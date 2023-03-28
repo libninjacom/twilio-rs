@@ -15,8 +15,7 @@ pub struct ApiV2010AccountTranscription {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub price: Option<f64>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    #[serde(with = "rust_decimal::serde::str")]
-    pub price_unit: Option<rust_decimal::Decimal>,
+    pub price_unit: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub recording_sid: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]

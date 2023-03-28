@@ -10,8 +10,8 @@ pub struct ListNotificationRequest<'a> {
     pub account_sid: String,
     pub log: Option<i64>,
     pub message_date: Option<chrono::NaiveDate>,
-    pub message_date_gt: chrono::NaiveDate,
-    pub message_date_lt: chrono::NaiveDate,
+    pub message_date_gt: Option<chrono::NaiveDate>,
+    pub message_date_lt: Option<chrono::NaiveDate>,
     pub page: Option<i64>,
     pub page_size: Option<i64>,
     pub page_token: Option<String>,
@@ -24,8 +24,7 @@ impl<'a> ListNotificationRequest<'a> {
             .get(
                 &format!(
                     "/2010-04-01/Accounts/{account_sid}/Notifications.json", account_sid
-                    = self.account_sid, message_date_gt = self.message_date_gt,
-                    message_date_lt = self.message_date_lt
+                    = self.account_sid
                 ),
             );
         if let Some(ref unwrapped) = self.log {
@@ -33,6 +32,12 @@ impl<'a> ListNotificationRequest<'a> {
         }
         if let Some(ref unwrapped) = self.message_date {
             r = r.query("MessageDate", &unwrapped.to_string());
+        }
+        if let Some(ref unwrapped) = self.message_date_gt {
+            r = r.query("MessageDate_gt", &unwrapped.to_string());
+        }
+        if let Some(ref unwrapped) = self.message_date_lt {
+            r = r.query("MessageDate_lt", &unwrapped.to_string());
         }
         if let Some(ref unwrapped) = self.page {
             r = r.query("Page", &unwrapped.to_string());
@@ -43,6 +48,7 @@ impl<'a> ListNotificationRequest<'a> {
         if let Some(ref unwrapped) = self.page_token {
             r = r.query("PageToken", &unwrapped.to_string());
         }
+        r = self.http_client.authenticate(r);
         let res = r.send_awaiting_body().await?;
         res.json()
     }
@@ -52,6 +58,14 @@ impl<'a> ListNotificationRequest<'a> {
     }
     pub fn message_date(mut self, message_date: chrono::NaiveDate) -> Self {
         self.message_date = Some(message_date);
+        self
+    }
+    pub fn message_date_gt(mut self, message_date_gt: chrono::NaiveDate) -> Self {
+        self.message_date_gt = Some(message_date_gt);
+        self
+    }
+    pub fn message_date_lt(mut self, message_date_lt: chrono::NaiveDate) -> Self {
+        self.message_date_lt = Some(message_date_lt);
         self
     }
     pub fn page(mut self, page: i64) -> Self {

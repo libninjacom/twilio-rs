@@ -223,7 +223,7 @@ pub use list_available_phone_number_shared_cost::ListAvailablePhoneNumberSharedC
 pub use list_available_phone_number_toll_free::ListAvailablePhoneNumberTollFreeRequest;
 pub use list_available_phone_number_voip::ListAvailablePhoneNumberVoipRequest;
 pub use fetch_balance::FetchBalanceRequest;
-pub use list_call::{ListCallRequest, ListCallRequired};
+pub use list_call::ListCallRequest;
 pub use create_call::CreateCallRequest;
 pub use fetch_call::FetchCallRequest;
 pub use update_call::UpdateCallRequest;
@@ -235,23 +235,19 @@ pub use create_call_feedback_summary::CreateCallFeedbackSummaryRequest;
 pub use fetch_call_feedback_summary::FetchCallFeedbackSummaryRequest;
 pub use delete_call_feedback_summary::DeleteCallFeedbackSummaryRequest;
 pub use fetch_call_notification::FetchCallNotificationRequest;
-pub use list_call_notification::{
-    ListCallNotificationRequest, ListCallNotificationRequired,
-};
-pub use list_call_recording::{ListCallRecordingRequest, ListCallRecordingRequired};
+pub use list_call_notification::ListCallNotificationRequest;
+pub use list_call_recording::ListCallRecordingRequest;
 pub use create_call_recording::CreateCallRecordingRequest;
 pub use fetch_call_recording::FetchCallRecordingRequest;
 pub use update_call_recording::UpdateCallRecordingRequest;
 pub use delete_call_recording::DeleteCallRecordingRequest;
 pub use fetch_conference::FetchConferenceRequest;
 pub use update_conference::UpdateConferenceRequest;
-pub use list_conference::{ListConferenceRequest, ListConferenceRequired};
+pub use list_conference::ListConferenceRequest;
 pub use fetch_conference_recording::FetchConferenceRecordingRequest;
 pub use update_conference_recording::UpdateConferenceRecordingRequest;
 pub use delete_conference_recording::DeleteConferenceRecordingRequest;
-pub use list_conference_recording::{
-    ListConferenceRecordingRequest, ListConferenceRecordingRequired,
-};
+pub use list_conference_recording::ListConferenceRecordingRequest;
 pub use fetch_connect_app::FetchConnectAppRequest;
 pub use update_connect_app::UpdateConnectAppRequest;
 pub use delete_connect_app::DeleteConnectAppRequest;
@@ -284,7 +280,7 @@ pub use list_key::ListKeyRequest;
 pub use create_new_key::CreateNewKeyRequest;
 pub use fetch_media::FetchMediaRequest;
 pub use delete_media::DeleteMediaRequest;
-pub use list_media::{ListMediaRequest, ListMediaRequired};
+pub use list_media::ListMediaRequest;
 pub use fetch_member::FetchMemberRequest;
 pub use update_member::UpdateMemberRequest;
 pub use list_member::ListMemberRequest;

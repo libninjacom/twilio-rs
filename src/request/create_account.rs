@@ -11,6 +11,7 @@ pub struct CreateAccountRequest<'a> {
 impl<'a> CreateAccountRequest<'a> {
     pub async fn send(self) -> ::httpclient::InMemoryResult<ApiV2010Account> {
         let mut r = self.http_client.client.post("/2010-04-01/Accounts.json");
+        r = self.http_client.authenticate(r);
         let res = r.send_awaiting_body().await?;
         res.json()
     }

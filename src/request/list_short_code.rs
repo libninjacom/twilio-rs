@@ -40,6 +40,7 @@ impl<'a> ListShortCodeRequest<'a> {
         if let Some(ref unwrapped) = self.short_code {
             r = r.query("ShortCode", &unwrapped.to_string());
         }
+        r = self.http_client.authenticate(r);
         let res = r.send_awaiting_body().await?;
         res.json()
     }

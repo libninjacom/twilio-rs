@@ -1,21 +1,18 @@
 #![allow(unused_imports)]
 use twilio::TwilioClient;
 use twilio::model::*;
-use twilio::request::ListConferenceRequired;
 #[tokio::main]
 async fn main() {
     let client = TwilioClient::from_env();
-    let args = ListConferenceRequired {
-        account_sid: "your account sid",
-        date_created_gt: chrono::Utc::now().date(),
-        date_created_lt: chrono::Utc::now().date(),
-        date_updated_gt: chrono::Utc::now().date(),
-        date_updated_lt: chrono::Utc::now().date(),
-    };
+    let account_sid = "your account sid";
     let response = client
-        .list_conference(args)
-        .date_created(chrono::Utc::now().date())
-        .date_updated(chrono::Utc::now().date())
+        .list_conference(account_sid)
+        .date_created(chrono::Utc::now().date_naive())
+        .date_created_gt(chrono::Utc::now().date_naive())
+        .date_created_lt(chrono::Utc::now().date_naive())
+        .date_updated(chrono::Utc::now().date_naive())
+        .date_updated_gt(chrono::Utc::now().date_naive())
+        .date_updated_lt(chrono::Utc::now().date_naive())
         .friendly_name("your friendly name")
         .page(1)
         .page_size(1)

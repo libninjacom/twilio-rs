@@ -48,6 +48,7 @@ impl<'a> ListUsageRecordLastMonthRequest<'a> {
         if let Some(ref unwrapped) = self.start_date {
             r = r.query("StartDate", &unwrapped.to_string());
         }
+        r = self.http_client.authenticate(r);
         let res = r.send_awaiting_body().await?;
         res.json()
     }

@@ -11,8 +11,8 @@ pub struct ListRecordingRequest<'a> {
     pub call_sid: Option<String>,
     pub conference_sid: Option<String>,
     pub date_created: Option<chrono::DateTime<chrono::Utc>>,
-    pub date_created_gt: chrono::DateTime<chrono::Utc>,
-    pub date_created_lt: chrono::DateTime<chrono::Utc>,
+    pub date_created_gt: Option<chrono::DateTime<chrono::Utc>>,
+    pub date_created_lt: Option<chrono::DateTime<chrono::Utc>>,
     pub include_soft_deleted: Option<bool>,
     pub page: Option<i64>,
     pub page_size: Option<i64>,
@@ -26,8 +26,7 @@ impl<'a> ListRecordingRequest<'a> {
             .get(
                 &format!(
                     "/2010-04-01/Accounts/{account_sid}/Recordings.json", account_sid =
-                    self.account_sid, date_created_gt = self.date_created_gt,
-                    date_created_lt = self.date_created_lt
+                    self.account_sid
                 ),
             );
         if let Some(ref unwrapped) = self.call_sid {
@@ -38,6 +37,12 @@ impl<'a> ListRecordingRequest<'a> {
         }
         if let Some(ref unwrapped) = self.date_created {
             r = r.query("DateCreated", &unwrapped.to_string());
+        }
+        if let Some(ref unwrapped) = self.date_created_gt {
+            r = r.query("DateCreated_gt", &unwrapped.to_string());
+        }
+        if let Some(ref unwrapped) = self.date_created_lt {
+            r = r.query("DateCreated_lt", &unwrapped.to_string());
         }
         if let Some(ref unwrapped) = self.include_soft_deleted {
             r = r.query("IncludeSoftDeleted", &unwrapped.to_string());
@@ -51,6 +56,7 @@ impl<'a> ListRecordingRequest<'a> {
         if let Some(ref unwrapped) = self.page_token {
             r = r.query("PageToken", &unwrapped.to_string());
         }
+        r = self.http_client.authenticate(r);
         let res = r.send_awaiting_body().await?;
         res.json()
     }
@@ -64,6 +70,20 @@ impl<'a> ListRecordingRequest<'a> {
     }
     pub fn date_created(mut self, date_created: chrono::DateTime<chrono::Utc>) -> Self {
         self.date_created = Some(date_created);
+        self
+    }
+    pub fn date_created_gt(
+        mut self,
+        date_created_gt: chrono::DateTime<chrono::Utc>,
+    ) -> Self {
+        self.date_created_gt = Some(date_created_gt);
+        self
+    }
+    pub fn date_created_lt(
+        mut self,
+        date_created_lt: chrono::DateTime<chrono::Utc>,
+    ) -> Self {
+        self.date_created_lt = Some(date_created_lt);
         self
     }
     pub fn include_soft_deleted(mut self, include_soft_deleted: bool) -> Self {

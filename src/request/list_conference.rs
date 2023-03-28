@@ -9,11 +9,11 @@ pub struct ListConferenceRequest<'a> {
     pub(crate) http_client: &'a TwilioClient,
     pub account_sid: String,
     pub date_created: Option<chrono::NaiveDate>,
-    pub date_created_gt: chrono::NaiveDate,
-    pub date_created_lt: chrono::NaiveDate,
+    pub date_created_gt: Option<chrono::NaiveDate>,
+    pub date_created_lt: Option<chrono::NaiveDate>,
     pub date_updated: Option<chrono::NaiveDate>,
-    pub date_updated_gt: chrono::NaiveDate,
-    pub date_updated_lt: chrono::NaiveDate,
+    pub date_updated_gt: Option<chrono::NaiveDate>,
+    pub date_updated_lt: Option<chrono::NaiveDate>,
     pub friendly_name: Option<String>,
     pub page: Option<i64>,
     pub page_size: Option<i64>,
@@ -28,16 +28,26 @@ impl<'a> ListConferenceRequest<'a> {
             .get(
                 &format!(
                     "/2010-04-01/Accounts/{account_sid}/Conferences.json", account_sid =
-                    self.account_sid, date_created_gt = self.date_created_gt,
-                    date_created_lt = self.date_created_lt, date_updated_gt = self
-                    .date_updated_gt, date_updated_lt = self.date_updated_lt
+                    self.account_sid
                 ),
             );
         if let Some(ref unwrapped) = self.date_created {
             r = r.query("DateCreated", &unwrapped.to_string());
         }
+        if let Some(ref unwrapped) = self.date_created_gt {
+            r = r.query("DateCreated_gt", &unwrapped.to_string());
+        }
+        if let Some(ref unwrapped) = self.date_created_lt {
+            r = r.query("DateCreated_lt", &unwrapped.to_string());
+        }
         if let Some(ref unwrapped) = self.date_updated {
             r = r.query("DateUpdated", &unwrapped.to_string());
+        }
+        if let Some(ref unwrapped) = self.date_updated_gt {
+            r = r.query("DateUpdated_gt", &unwrapped.to_string());
+        }
+        if let Some(ref unwrapped) = self.date_updated_lt {
+            r = r.query("DateUpdated_lt", &unwrapped.to_string());
         }
         if let Some(ref unwrapped) = self.friendly_name {
             r = r.query("FriendlyName", &unwrapped.to_string());
@@ -54,6 +64,7 @@ impl<'a> ListConferenceRequest<'a> {
         if let Some(ref unwrapped) = self.status {
             r = r.query("Status", &unwrapped.to_string());
         }
+        r = self.http_client.authenticate(r);
         let res = r.send_awaiting_body().await?;
         res.json()
     }
@@ -61,8 +72,24 @@ impl<'a> ListConferenceRequest<'a> {
         self.date_created = Some(date_created);
         self
     }
+    pub fn date_created_gt(mut self, date_created_gt: chrono::NaiveDate) -> Self {
+        self.date_created_gt = Some(date_created_gt);
+        self
+    }
+    pub fn date_created_lt(mut self, date_created_lt: chrono::NaiveDate) -> Self {
+        self.date_created_lt = Some(date_created_lt);
+        self
+    }
     pub fn date_updated(mut self, date_updated: chrono::NaiveDate) -> Self {
         self.date_updated = Some(date_updated);
+        self
+    }
+    pub fn date_updated_gt(mut self, date_updated_gt: chrono::NaiveDate) -> Self {
+        self.date_updated_gt = Some(date_updated_gt);
+        self
+    }
+    pub fn date_updated_lt(mut self, date_updated_lt: chrono::NaiveDate) -> Self {
+        self.date_updated_lt = Some(date_updated_lt);
         self
     }
     pub fn friendly_name(mut self, friendly_name: &str) -> Self {
@@ -86,14 +113,6 @@ impl<'a> ListConferenceRequest<'a> {
         self
     }
 }
-pub struct ListConferenceRequired<'a> {
-    pub account_sid: &'a str,
-    pub date_created_gt: chrono::NaiveDate,
-    pub date_created_lt: chrono::NaiveDate,
-    pub date_updated_gt: chrono::NaiveDate,
-    pub date_updated_lt: chrono::NaiveDate,
-}
-impl<'a> ListConferenceRequired<'a> {}
 impl<'a> ::std::future::IntoFuture for ListConferenceRequest<'a> {
     type Output = httpclient::InMemoryResult<serde_json::Value>;
     type IntoFuture = ::futures::future::BoxFuture<'a, Self::Output>;

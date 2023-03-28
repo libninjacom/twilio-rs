@@ -21,6 +21,7 @@ impl<'a> CreateStreamRequest<'a> {
                     account_sid = self.account_sid, call_sid = self.call_sid
                 ),
             );
+        r = self.http_client.authenticate(r);
         let res = r.send_awaiting_body().await?;
         res.json()
     }

@@ -24,6 +24,7 @@ impl<'a> FetchAuthorizedConnectAppRequest<'a> {
                     .connect_app_sid
                 ),
             );
+        r = self.http_client.authenticate(r);
         let res = r.send_awaiting_body().await?;
         res.json()
     }

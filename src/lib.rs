@@ -6,7 +6,6 @@
 pub mod model;
 pub mod request;
 use crate::model::*;
-mod serde;
 pub struct TwilioClient {
     pub client: httpclient::Client,
     authentication: TwilioAuthentication,
@@ -32,7 +31,11 @@ impl TwilioClient {
         &self,
         mut r: httpclient::RequestBuilder<'a>,
     ) -> httpclient::RequestBuilder<'a> {
-        match &self.authentication {}
+        match &self.authentication {
+            TwilioAuthentication::BasicAuth { basic_auth } => {
+                r = r.basic_auth(basic_auth);
+            }
+        }
         r
     }
     pub fn with_middleware<M: httpclient::Middleware + 'static>(
@@ -464,24 +467,21 @@ impl TwilioClient {
         }
     }
     ///Retrieves a collection of calls made to and from your account
-    pub fn list_call(
-        &self,
-        args: request::ListCallRequired,
-    ) -> request::ListCallRequest {
+    pub fn list_call(&self, account_sid: &str) -> request::ListCallRequest {
         request::ListCallRequest {
             http_client: &self,
-            account_sid: args.account_sid.to_owned(),
+            account_sid: account_sid.to_owned(),
             end_time: None,
-            end_time_gt: args.end_time_gt,
-            end_time_lt: args.end_time_lt,
+            end_time_gt: None,
+            end_time_lt: None,
             from: None,
             page: None,
             page_size: None,
             page_token: None,
             parent_call_sid: None,
             start_time: None,
-            start_time_gt: args.start_time_gt,
-            start_time_lt: args.start_time_lt,
+            start_time_gt: None,
+            start_time_lt: None,
             status: None,
             to: None,
         }
@@ -613,16 +613,17 @@ impl TwilioClient {
     }
     pub fn list_call_notification(
         &self,
-        args: request::ListCallNotificationRequired,
+        account_sid: &str,
+        call_sid: &str,
     ) -> request::ListCallNotificationRequest {
         request::ListCallNotificationRequest {
             http_client: &self,
-            account_sid: args.account_sid.to_owned(),
-            call_sid: args.call_sid.to_owned(),
+            account_sid: account_sid.to_owned(),
+            call_sid: call_sid.to_owned(),
             log: None,
             message_date: None,
-            message_date_gt: args.message_date_gt,
-            message_date_lt: args.message_date_lt,
+            message_date_gt: None,
+            message_date_lt: None,
             page: None,
             page_size: None,
             page_token: None,
@@ -631,15 +632,16 @@ impl TwilioClient {
     ///Retrieve a list of recordings belonging to the call used to make the request
     pub fn list_call_recording(
         &self,
-        args: request::ListCallRecordingRequired,
+        account_sid: &str,
+        call_sid: &str,
     ) -> request::ListCallRecordingRequest {
         request::ListCallRecordingRequest {
             http_client: &self,
-            account_sid: args.account_sid.to_owned(),
-            call_sid: args.call_sid.to_owned(),
+            account_sid: account_sid.to_owned(),
+            call_sid: call_sid.to_owned(),
             date_created: None,
-            date_created_gt: args.date_created_gt,
-            date_created_lt: args.date_created_lt,
+            date_created_gt: None,
+            date_created_lt: None,
             page: None,
             page_size: None,
             page_token: None,
@@ -723,19 +725,16 @@ impl TwilioClient {
         }
     }
     ///Retrieve a list of conferences belonging to the account used to make the request
-    pub fn list_conference(
-        &self,
-        args: request::ListConferenceRequired,
-    ) -> request::ListConferenceRequest {
+    pub fn list_conference(&self, account_sid: &str) -> request::ListConferenceRequest {
         request::ListConferenceRequest {
             http_client: &self,
-            account_sid: args.account_sid.to_owned(),
+            account_sid: account_sid.to_owned(),
             date_created: None,
-            date_created_gt: args.date_created_gt,
-            date_created_lt: args.date_created_lt,
+            date_created_gt: None,
+            date_created_lt: None,
             date_updated: None,
-            date_updated_gt: args.date_updated_gt,
-            date_updated_lt: args.date_updated_lt,
+            date_updated_gt: None,
+            date_updated_lt: None,
             friendly_name: None,
             page: None,
             page_size: None,
@@ -788,15 +787,16 @@ impl TwilioClient {
     ///Retrieve a list of recordings belonging to the call used to make the request
     pub fn list_conference_recording(
         &self,
-        args: request::ListConferenceRecordingRequired,
+        account_sid: &str,
+        conference_sid: &str,
     ) -> request::ListConferenceRecordingRequest {
         request::ListConferenceRecordingRequest {
             http_client: &self,
-            account_sid: args.account_sid.to_owned(),
-            conference_sid: args.conference_sid.to_owned(),
+            account_sid: account_sid.to_owned(),
+            conference_sid: conference_sid.to_owned(),
             date_created: None,
-            date_created_gt: args.date_created_gt,
-            date_created_lt: args.date_created_lt,
+            date_created_gt: None,
+            date_created_lt: None,
             page: None,
             page_size: None,
             page_token: None,
@@ -1152,15 +1152,16 @@ impl TwilioClient {
     ///Retrieve a list of Media resources belonging to the account used to make the request
     pub fn list_media(
         &self,
-        args: request::ListMediaRequired,
+        account_sid: &str,
+        message_sid: &str,
     ) -> request::ListMediaRequest {
         request::ListMediaRequest {
             http_client: &self,
-            account_sid: args.account_sid.to_owned(),
+            account_sid: account_sid.to_owned(),
             date_created: None,
-            date_created_gt: args.date_created_gt,
-            date_created_lt: args.date_created_lt,
-            message_sid: args.message_sid.to_owned(),
+            date_created_gt: None,
+            date_created_lt: None,
+            message_sid: message_sid.to_owned(),
             page: None,
             page_size: None,
             page_token: None,
@@ -1210,18 +1211,13 @@ impl TwilioClient {
         }
     }
     ///Retrieve a list of messages belonging to the account used to make the request
-    pub fn list_message(
-        &self,
-        account_sid: &str,
-        date_sent_gt: chrono::DateTime<chrono::Utc>,
-        date_sent_lt: chrono::DateTime<chrono::Utc>,
-    ) -> request::ListMessageRequest {
+    pub fn list_message(&self, account_sid: &str) -> request::ListMessageRequest {
         request::ListMessageRequest {
             http_client: &self,
             account_sid: account_sid.to_owned(),
             date_sent: None,
-            date_sent_gt,
-            date_sent_lt,
+            date_sent_gt: None,
+            date_sent_lt: None,
             from: None,
             page: None,
             page_size: None,
@@ -1318,16 +1314,14 @@ impl TwilioClient {
     pub fn list_notification(
         &self,
         account_sid: &str,
-        message_date_gt: chrono::NaiveDate,
-        message_date_lt: chrono::NaiveDate,
     ) -> request::ListNotificationRequest {
         request::ListNotificationRequest {
             http_client: &self,
             account_sid: account_sid.to_owned(),
             log: None,
             message_date: None,
-            message_date_gt,
-            message_date_lt,
+            message_date_gt: None,
+            message_date_lt: None,
             page: None,
             page_size: None,
             page_token: None,
@@ -1569,20 +1563,15 @@ impl TwilioClient {
         }
     }
     ///Retrieve a list of recordings belonging to the account used to make the request
-    pub fn list_recording(
-        &self,
-        account_sid: &str,
-        date_created_gt: chrono::DateTime<chrono::Utc>,
-        date_created_lt: chrono::DateTime<chrono::Utc>,
-    ) -> request::ListRecordingRequest {
+    pub fn list_recording(&self, account_sid: &str) -> request::ListRecordingRequest {
         request::ListRecordingRequest {
             http_client: &self,
             account_sid: account_sid.to_owned(),
             call_sid: None,
             conference_sid: None,
             date_created: None,
-            date_created_gt,
-            date_created_lt,
+            date_created_gt: None,
+            date_created_lt: None,
             include_soft_deleted: None,
             page: None,
             page_size: None,
@@ -2709,6 +2698,17 @@ impl TwilioClient {
             account_sid: account_sid.to_owned(),
             call_sid: call_sid.to_owned(),
             sid: sid.to_owned(),
+        }
+    }
+}
+pub enum TwilioAuthentication {
+    BasicAuth { basic_auth: String },
+}
+impl TwilioAuthentication {
+    pub fn from_env() -> Self {
+        Self::BasicAuth {
+            basic_auth: std::env::var("TWILIO_BASIC_AUTH")
+                .expect("Environment variable TWILIO_BASIC_AUTH is not set."),
         }
     }
 }

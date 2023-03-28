@@ -20,6 +20,7 @@ impl<'a> CreateNewKeyRequest<'a> {
                     .account_sid
                 ),
             );
+        r = self.http_client.authenticate(r);
         let res = r.send_awaiting_body().await?;
         res.json()
     }

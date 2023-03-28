@@ -48,6 +48,7 @@ impl<'a> ListIncomingPhoneNumberRequest<'a> {
         if let Some(ref unwrapped) = self.phone_number {
             r = r.query("PhoneNumber", &unwrapped.to_string());
         }
+        r = self.http_client.authenticate(r);
         let res = r.send_awaiting_body().await?;
         res.json()
     }

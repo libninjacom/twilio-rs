@@ -41,6 +41,10 @@ version level:
         git push origin v$VERSION
     git push
 
+generate:
+    libninja gen -l rust -o . --repo libninjacom/twilio-rs Twilio ../../specs/twilio_api_v2010.yaml
+alias g := generate
+
 publish:
     cargo publish
 

@@ -25,6 +25,7 @@ impl<'a> FetchRecordingAddOnResultRequest<'a> {
                     sid = self.sid
                 ),
             );
+        r = self.http_client.authenticate(r);
         let res = r.send_awaiting_body().await?;
         res.json()
     }

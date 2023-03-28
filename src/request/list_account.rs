@@ -31,6 +31,7 @@ impl<'a> ListAccountRequest<'a> {
         if let Some(ref unwrapped) = self.status {
             r = r.query("Status", &unwrapped.to_string());
         }
+        r = self.http_client.authenticate(r);
         let res = r.send_awaiting_body().await?;
         res.json()
     }

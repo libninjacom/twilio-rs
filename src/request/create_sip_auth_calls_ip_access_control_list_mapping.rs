@@ -25,6 +25,7 @@ impl<'a> CreateSipAuthCallsIpAccessControlListMappingRequest<'a> {
                     account_sid = self.account_sid, domain_sid = self.domain_sid
                 ),
             );
+        r = self.http_client.authenticate(r);
         let res = r.send_awaiting_body().await?;
         res.json()
     }

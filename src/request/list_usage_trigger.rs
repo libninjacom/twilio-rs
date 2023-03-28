@@ -44,6 +44,7 @@ impl<'a> ListUsageTriggerRequest<'a> {
         if let Some(ref unwrapped) = self.usage_category {
             r = r.query("UsageCategory", &unwrapped.to_string());
         }
+        r = self.http_client.authenticate(r);
         let res = r.send_awaiting_body().await?;
         res.json()
     }

@@ -15,6 +15,7 @@ impl<'a> UpdateAccountRequest<'a> {
             .http_client
             .client
             .post(&format!("/2010-04-01/Accounts/{sid}.json", sid = self.sid));
+        r = self.http_client.authenticate(r);
         let res = r.send_awaiting_body().await?;
         res.json()
     }

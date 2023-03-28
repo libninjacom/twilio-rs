@@ -8,12 +8,12 @@ async fn main() {
     let response = client
         .list_usage_record_this_month(account_sid)
         .category("your category")
-        .end_date(chrono::Utc::now().date())
+        .end_date(chrono::Utc::now().date_naive())
         .include_subaccounts(true)
         .page(1)
         .page_size(1)
         .page_token("your page token")
-        .start_date(chrono::Utc::now().date())
+        .start_date(chrono::Utc::now().date_naive())
         .await
         .unwrap();
     println!("{:#?}", response);

@@ -10,8 +10,8 @@ pub struct ListCallRecordingRequest<'a> {
     pub account_sid: String,
     pub call_sid: String,
     pub date_created: Option<chrono::NaiveDate>,
-    pub date_created_gt: chrono::NaiveDate,
-    pub date_created_lt: chrono::NaiveDate,
+    pub date_created_gt: Option<chrono::NaiveDate>,
+    pub date_created_lt: Option<chrono::NaiveDate>,
     pub page: Option<i64>,
     pub page_size: Option<i64>,
     pub page_token: Option<String>,
@@ -24,13 +24,17 @@ impl<'a> ListCallRecordingRequest<'a> {
             .get(
                 &format!(
                     "/2010-04-01/Accounts/{account_sid}/Calls/{call_sid}/Recordings.json",
-                    account_sid = self.account_sid, call_sid = self.call_sid,
-                    date_created_gt = self.date_created_gt, date_created_lt = self
-                    .date_created_lt
+                    account_sid = self.account_sid, call_sid = self.call_sid
                 ),
             );
         if let Some(ref unwrapped) = self.date_created {
             r = r.query("DateCreated", &unwrapped.to_string());
+        }
+        if let Some(ref unwrapped) = self.date_created_gt {
+            r = r.query("DateCreated_gt", &unwrapped.to_string());
+        }
+        if let Some(ref unwrapped) = self.date_created_lt {
+            r = r.query("DateCreated_lt", &unwrapped.to_string());
         }
         if let Some(ref unwrapped) = self.page {
             r = r.query("Page", &unwrapped.to_string());
@@ -41,11 +45,20 @@ impl<'a> ListCallRecordingRequest<'a> {
         if let Some(ref unwrapped) = self.page_token {
             r = r.query("PageToken", &unwrapped.to_string());
         }
+        r = self.http_client.authenticate(r);
         let res = r.send_awaiting_body().await?;
         res.json()
     }
     pub fn date_created(mut self, date_created: chrono::NaiveDate) -> Self {
         self.date_created = Some(date_created);
+        self
+    }
+    pub fn date_created_gt(mut self, date_created_gt: chrono::NaiveDate) -> Self {
+        self.date_created_gt = Some(date_created_gt);
+        self
+    }
+    pub fn date_created_lt(mut self, date_created_lt: chrono::NaiveDate) -> Self {
+        self.date_created_lt = Some(date_created_lt);
         self
     }
     pub fn page(mut self, page: i64) -> Self {
@@ -61,13 +74,6 @@ impl<'a> ListCallRecordingRequest<'a> {
         self
     }
 }
-pub struct ListCallRecordingRequired<'a> {
-    pub account_sid: &'a str,
-    pub call_sid: &'a str,
-    pub date_created_gt: chrono::NaiveDate,
-    pub date_created_lt: chrono::NaiveDate,
-}
-impl<'a> ListCallRecordingRequired<'a> {}
 impl<'a> ::std::future::IntoFuture for ListCallRecordingRequest<'a> {
     type Output = httpclient::InMemoryResult<serde_json::Value>;
     type IntoFuture = ::futures::future::BoxFuture<'a, Self::Output>;

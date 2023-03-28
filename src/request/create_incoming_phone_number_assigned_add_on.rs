@@ -25,6 +25,7 @@ impl<'a> CreateIncomingPhoneNumberAssignedAddOnRequest<'a> {
                     account_sid = self.account_sid, resource_sid = self.resource_sid
                 ),
             );
+        r = self.http_client.authenticate(r);
         let res = r.send_awaiting_body().await?;
         res.json()
     }

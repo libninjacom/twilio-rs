@@ -23,6 +23,7 @@ impl<'a> FetchAvailablePhoneNumberCountryRequest<'a> {
                     account_sid = self.account_sid, country_code = self.country_code
                 ),
             );
+        r = self.http_client.authenticate(r);
         let res = r.send_awaiting_body().await?;
         res.json()
     }

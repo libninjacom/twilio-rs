@@ -25,6 +25,7 @@ impl<'a> FetchRecordingRequest<'a> {
         if let Some(ref unwrapped) = self.include_soft_deleted {
             r = r.query("IncludeSoftDeleted", &unwrapped.to_string());
         }
+        r = self.http_client.authenticate(r);
         let res = r.send_awaiting_body().await?;
         res.json()
     }

@@ -26,6 +26,7 @@ impl<'a> CreateSipIpAddressRequest<'a> {
                     .ip_access_control_list_sid
                 ),
             );
+        r = self.http_client.authenticate(r);
         let res = r.send_awaiting_body().await?;
         res.json()
     }
