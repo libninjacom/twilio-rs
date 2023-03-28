@@ -1,0 +1,1237 @@
+[package]
+name = "twilio"
+edition = "2021"
+version = "0.1.0"
+description = "Twilio client, generated from the OpenAPI spec."
+homepage = "https://github.com/libninjacom/twilio-rs"
+documentation = "https://docs.rs/twilio"
+readme = "README.md"
+license = "MIT"
+repository = "https://github.com/libninjacom/twilio-rs"
+
+[workspace]
+members = []
+
+[dependencies]
+futures = "0.3.25"
+httpclient = "0.15.0"
+serde_json = "1.0.81"
+
+[dependencies.chrono]
+version = "0.4.23"
+features = ["serde"]
+
+[dependencies.rust_decimal]
+version = "1.28.1"
+features = ["serde-with-str"]
+default-features = false
+
+[dependencies.serde]
+version = "1.0.137"
+features = ["derive"]
+
+[dev-dependencies.tokio]
+version = "1.18.2"
+features = ["full"]
+
+[lib]
+path = "src/lib.rs"
+name = "twilio"
+doctest = false
+edition = "2021"
+crate-type = ["rlib"]
+required-features = []
+
+[[example]]
+path = "examples/create_account.rs"
+name = "create_account"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/create_address.rs"
+name = "create_address"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/create_application.rs"
+name = "create_application"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/create_call.rs"
+name = "create_call"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/create_call_feedback_summary.rs"
+name = "create_call_feedback_summary"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/create_call_recording.rs"
+name = "create_call_recording"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/create_incoming_phone_number.rs"
+name = "create_incoming_phone_number"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/create_incoming_phone_number_assigned_add_on.rs"
+name = "create_incoming_phone_number_assigned_add_on"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/create_incoming_phone_number_local.rs"
+name = "create_incoming_phone_number_local"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/create_incoming_phone_number_mobile.rs"
+name = "create_incoming_phone_number_mobile"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/create_incoming_phone_number_toll_free.rs"
+name = "create_incoming_phone_number_toll_free"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/create_message.rs"
+name = "create_message"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/create_message_feedback.rs"
+name = "create_message_feedback"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/create_new_key.rs"
+name = "create_new_key"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/create_new_signing_key.rs"
+name = "create_new_signing_key"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/create_participant.rs"
+name = "create_participant"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/create_payments.rs"
+name = "create_payments"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/create_queue.rs"
+name = "create_queue"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/create_sip_auth_calls_credential_list_mapping.rs"
+name = "create_sip_auth_calls_credential_list_mapping"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/create_sip_auth_calls_ip_access_control_list_mapping.rs"
+name = "create_sip_auth_calls_ip_access_control_list_mapping"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/create_sip_auth_registrations_credential_list_mapping.rs"
+name = "create_sip_auth_registrations_credential_list_mapping"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/create_sip_credential.rs"
+name = "create_sip_credential"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/create_sip_credential_list.rs"
+name = "create_sip_credential_list"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/create_sip_credential_list_mapping.rs"
+name = "create_sip_credential_list_mapping"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/create_sip_domain.rs"
+name = "create_sip_domain"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/create_sip_ip_access_control_list.rs"
+name = "create_sip_ip_access_control_list"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/create_sip_ip_access_control_list_mapping.rs"
+name = "create_sip_ip_access_control_list_mapping"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/create_sip_ip_address.rs"
+name = "create_sip_ip_address"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/create_siprec.rs"
+name = "create_siprec"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/create_stream.rs"
+name = "create_stream"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/create_token.rs"
+name = "create_token"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/create_usage_trigger.rs"
+name = "create_usage_trigger"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/create_user_defined_message.rs"
+name = "create_user_defined_message"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/create_user_defined_message_subscription.rs"
+name = "create_user_defined_message_subscription"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/create_validation_request.rs"
+name = "create_validation_request"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/delete_address.rs"
+name = "delete_address"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/delete_application.rs"
+name = "delete_application"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/delete_call.rs"
+name = "delete_call"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/delete_call_feedback_summary.rs"
+name = "delete_call_feedback_summary"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/delete_call_recording.rs"
+name = "delete_call_recording"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/delete_conference_recording.rs"
+name = "delete_conference_recording"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/delete_connect_app.rs"
+name = "delete_connect_app"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/delete_incoming_phone_number.rs"
+name = "delete_incoming_phone_number"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/delete_incoming_phone_number_assigned_add_on.rs"
+name = "delete_incoming_phone_number_assigned_add_on"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/delete_key.rs"
+name = "delete_key"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/delete_media.rs"
+name = "delete_media"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/delete_message.rs"
+name = "delete_message"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/delete_outgoing_caller_id.rs"
+name = "delete_outgoing_caller_id"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/delete_participant.rs"
+name = "delete_participant"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/delete_queue.rs"
+name = "delete_queue"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/delete_recording.rs"
+name = "delete_recording"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/delete_recording_add_on_result.rs"
+name = "delete_recording_add_on_result"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/delete_recording_add_on_result_payload.rs"
+name = "delete_recording_add_on_result_payload"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/delete_recording_transcription.rs"
+name = "delete_recording_transcription"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/delete_signing_key.rs"
+name = "delete_signing_key"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/delete_sip_auth_calls_credential_list_mapping.rs"
+name = "delete_sip_auth_calls_credential_list_mapping"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/delete_sip_auth_calls_ip_access_control_list_mapping.rs"
+name = "delete_sip_auth_calls_ip_access_control_list_mapping"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/delete_sip_auth_registrations_credential_list_mapping.rs"
+name = "delete_sip_auth_registrations_credential_list_mapping"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/delete_sip_credential.rs"
+name = "delete_sip_credential"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/delete_sip_credential_list.rs"
+name = "delete_sip_credential_list"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/delete_sip_credential_list_mapping.rs"
+name = "delete_sip_credential_list_mapping"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/delete_sip_domain.rs"
+name = "delete_sip_domain"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/delete_sip_ip_access_control_list.rs"
+name = "delete_sip_ip_access_control_list"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/delete_sip_ip_access_control_list_mapping.rs"
+name = "delete_sip_ip_access_control_list_mapping"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/delete_sip_ip_address.rs"
+name = "delete_sip_ip_address"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/delete_transcription.rs"
+name = "delete_transcription"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/delete_usage_trigger.rs"
+name = "delete_usage_trigger"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/delete_user_defined_message_subscription.rs"
+name = "delete_user_defined_message_subscription"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/fetch_account.rs"
+name = "fetch_account"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/fetch_address.rs"
+name = "fetch_address"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/fetch_application.rs"
+name = "fetch_application"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/fetch_authorized_connect_app.rs"
+name = "fetch_authorized_connect_app"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/fetch_available_phone_number_country.rs"
+name = "fetch_available_phone_number_country"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/fetch_balance.rs"
+name = "fetch_balance"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/fetch_call.rs"
+name = "fetch_call"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/fetch_call_feedback.rs"
+name = "fetch_call_feedback"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/fetch_call_feedback_summary.rs"
+name = "fetch_call_feedback_summary"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/fetch_call_notification.rs"
+name = "fetch_call_notification"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/fetch_call_recording.rs"
+name = "fetch_call_recording"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/fetch_conference.rs"
+name = "fetch_conference"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/fetch_conference_recording.rs"
+name = "fetch_conference_recording"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/fetch_connect_app.rs"
+name = "fetch_connect_app"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/fetch_incoming_phone_number.rs"
+name = "fetch_incoming_phone_number"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/fetch_incoming_phone_number_assigned_add_on.rs"
+name = "fetch_incoming_phone_number_assigned_add_on"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/fetch_incoming_phone_number_assigned_add_on_extension.rs"
+name = "fetch_incoming_phone_number_assigned_add_on_extension"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/fetch_key.rs"
+name = "fetch_key"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/fetch_media.rs"
+name = "fetch_media"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/fetch_member.rs"
+name = "fetch_member"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/fetch_message.rs"
+name = "fetch_message"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/fetch_notification.rs"
+name = "fetch_notification"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/fetch_outgoing_caller_id.rs"
+name = "fetch_outgoing_caller_id"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/fetch_participant.rs"
+name = "fetch_participant"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/fetch_queue.rs"
+name = "fetch_queue"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/fetch_recording.rs"
+name = "fetch_recording"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/fetch_recording_add_on_result.rs"
+name = "fetch_recording_add_on_result"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/fetch_recording_add_on_result_payload.rs"
+name = "fetch_recording_add_on_result_payload"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/fetch_recording_transcription.rs"
+name = "fetch_recording_transcription"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/fetch_short_code.rs"
+name = "fetch_short_code"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/fetch_signing_key.rs"
+name = "fetch_signing_key"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/fetch_sip_auth_calls_credential_list_mapping.rs"
+name = "fetch_sip_auth_calls_credential_list_mapping"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/fetch_sip_auth_calls_ip_access_control_list_mapping.rs"
+name = "fetch_sip_auth_calls_ip_access_control_list_mapping"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/fetch_sip_auth_registrations_credential_list_mapping.rs"
+name = "fetch_sip_auth_registrations_credential_list_mapping"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/fetch_sip_credential.rs"
+name = "fetch_sip_credential"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/fetch_sip_credential_list.rs"
+name = "fetch_sip_credential_list"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/fetch_sip_credential_list_mapping.rs"
+name = "fetch_sip_credential_list_mapping"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/fetch_sip_domain.rs"
+name = "fetch_sip_domain"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/fetch_sip_ip_access_control_list.rs"
+name = "fetch_sip_ip_access_control_list"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/fetch_sip_ip_access_control_list_mapping.rs"
+name = "fetch_sip_ip_access_control_list_mapping"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/fetch_sip_ip_address.rs"
+name = "fetch_sip_ip_address"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/fetch_transcription.rs"
+name = "fetch_transcription"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/fetch_usage_trigger.rs"
+name = "fetch_usage_trigger"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_account.rs"
+name = "list_account"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_address.rs"
+name = "list_address"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_application.rs"
+name = "list_application"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_authorized_connect_app.rs"
+name = "list_authorized_connect_app"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_available_phone_number_country.rs"
+name = "list_available_phone_number_country"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_available_phone_number_local.rs"
+name = "list_available_phone_number_local"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_available_phone_number_machine_to_machine.rs"
+name = "list_available_phone_number_machine_to_machine"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_available_phone_number_mobile.rs"
+name = "list_available_phone_number_mobile"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_available_phone_number_national.rs"
+name = "list_available_phone_number_national"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_available_phone_number_shared_cost.rs"
+name = "list_available_phone_number_shared_cost"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_available_phone_number_toll_free.rs"
+name = "list_available_phone_number_toll_free"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_available_phone_number_voip.rs"
+name = "list_available_phone_number_voip"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_call.rs"
+name = "list_call"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_call_event.rs"
+name = "list_call_event"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_call_notification.rs"
+name = "list_call_notification"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_call_recording.rs"
+name = "list_call_recording"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_conference.rs"
+name = "list_conference"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_conference_recording.rs"
+name = "list_conference_recording"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_connect_app.rs"
+name = "list_connect_app"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_dependent_phone_number.rs"
+name = "list_dependent_phone_number"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_incoming_phone_number.rs"
+name = "list_incoming_phone_number"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_incoming_phone_number_assigned_add_on.rs"
+name = "list_incoming_phone_number_assigned_add_on"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_incoming_phone_number_assigned_add_on_extension.rs"
+name = "list_incoming_phone_number_assigned_add_on_extension"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_incoming_phone_number_local.rs"
+name = "list_incoming_phone_number_local"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_incoming_phone_number_mobile.rs"
+name = "list_incoming_phone_number_mobile"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_incoming_phone_number_toll_free.rs"
+name = "list_incoming_phone_number_toll_free"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_key.rs"
+name = "list_key"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_media.rs"
+name = "list_media"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_member.rs"
+name = "list_member"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_message.rs"
+name = "list_message"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_notification.rs"
+name = "list_notification"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_outgoing_caller_id.rs"
+name = "list_outgoing_caller_id"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_participant.rs"
+name = "list_participant"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_queue.rs"
+name = "list_queue"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_recording.rs"
+name = "list_recording"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_recording_add_on_result.rs"
+name = "list_recording_add_on_result"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_recording_add_on_result_payload.rs"
+name = "list_recording_add_on_result_payload"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_recording_transcription.rs"
+name = "list_recording_transcription"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_short_code.rs"
+name = "list_short_code"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_signing_key.rs"
+name = "list_signing_key"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_sip_auth_calls_credential_list_mapping.rs"
+name = "list_sip_auth_calls_credential_list_mapping"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_sip_auth_calls_ip_access_control_list_mapping.rs"
+name = "list_sip_auth_calls_ip_access_control_list_mapping"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_sip_auth_registrations_credential_list_mapping.rs"
+name = "list_sip_auth_registrations_credential_list_mapping"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_sip_credential.rs"
+name = "list_sip_credential"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_sip_credential_list.rs"
+name = "list_sip_credential_list"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_sip_credential_list_mapping.rs"
+name = "list_sip_credential_list_mapping"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_sip_domain.rs"
+name = "list_sip_domain"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_sip_ip_access_control_list.rs"
+name = "list_sip_ip_access_control_list"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_sip_ip_access_control_list_mapping.rs"
+name = "list_sip_ip_access_control_list_mapping"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_sip_ip_address.rs"
+name = "list_sip_ip_address"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_transcription.rs"
+name = "list_transcription"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_usage_record.rs"
+name = "list_usage_record"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_usage_record_all_time.rs"
+name = "list_usage_record_all_time"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_usage_record_daily.rs"
+name = "list_usage_record_daily"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_usage_record_last_month.rs"
+name = "list_usage_record_last_month"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_usage_record_monthly.rs"
+name = "list_usage_record_monthly"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_usage_record_this_month.rs"
+name = "list_usage_record_this_month"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_usage_record_today.rs"
+name = "list_usage_record_today"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_usage_record_yearly.rs"
+name = "list_usage_record_yearly"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_usage_record_yesterday.rs"
+name = "list_usage_record_yesterday"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/list_usage_trigger.rs"
+name = "list_usage_trigger"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/update_account.rs"
+name = "update_account"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/update_address.rs"
+name = "update_address"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/update_application.rs"
+name = "update_application"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/update_call.rs"
+name = "update_call"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/update_call_feedback.rs"
+name = "update_call_feedback"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/update_call_recording.rs"
+name = "update_call_recording"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/update_conference.rs"
+name = "update_conference"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/update_conference_recording.rs"
+name = "update_conference_recording"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/update_connect_app.rs"
+name = "update_connect_app"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/update_incoming_phone_number.rs"
+name = "update_incoming_phone_number"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/update_key.rs"
+name = "update_key"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/update_member.rs"
+name = "update_member"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/update_message.rs"
+name = "update_message"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/update_outgoing_caller_id.rs"
+name = "update_outgoing_caller_id"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/update_participant.rs"
+name = "update_participant"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/update_payments.rs"
+name = "update_payments"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/update_queue.rs"
+name = "update_queue"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/update_short_code.rs"
+name = "update_short_code"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/update_signing_key.rs"
+name = "update_signing_key"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/update_sip_credential.rs"
+name = "update_sip_credential"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/update_sip_credential_list.rs"
+name = "update_sip_credential_list"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/update_sip_domain.rs"
+name = "update_sip_domain"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/update_sip_ip_access_control_list.rs"
+name = "update_sip_ip_access_control_list"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/update_sip_ip_address.rs"
+name = "update_sip_ip_address"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/update_siprec.rs"
+name = "update_siprec"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/update_stream.rs"
+name = "update_stream"
+edition = "2021"
+required-features = []
+
+[[example]]
+path = "examples/update_usage_trigger.rs"
+name = "update_usage_trigger"
+edition = "2021"
+required-features = []
