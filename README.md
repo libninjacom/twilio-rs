@@ -40,9 +40,6 @@ async fn main() {
 }
 ```
 
-This example loads configuration from environment variables, specifically:
-
-
 
 # Installation
 
