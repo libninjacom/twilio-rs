@@ -50,9 +50,7 @@ Add this to your Cargo.toml:
 twilio = "0.1.0"
 ```
 
-
 # Documentation
-
 
 
 * [Client Library Documentation](https://docs.rs/twilio)
