@@ -8,10 +8,10 @@
         <img src="https://img.shields.io/github/workflow/status/libninjacom/twilio-rs/ci?style=flat-square" alt="Build Status" />
     </a>
     
-<a href="https://crates.io/crates/twilio">
+<a href="https://crates.io/crates/twilio-rs">
     <img src="https://img.shields.io/crates/d/twilio?style=flat-square" alt="Downloads" />
 </a>
-<a href="https://crates.io/crates/twilio">
+<a href="https://crates.io/crates/twilio-rs">
     <img src="https://img.shields.io/crates/v/twilio?style=flat-square" alt="Crates.io" />
 </a>
 
