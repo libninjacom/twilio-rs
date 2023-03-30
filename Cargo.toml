@@ -1,5 +1,5 @@
 [package]
-name = "twilio"
+name = "twilio-rs"
 edition = "2021"
 version = "0.1.0"
 description = "Twilio client, generated from the OpenAPI spec."
